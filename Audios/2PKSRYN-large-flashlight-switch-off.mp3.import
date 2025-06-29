@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2PKSRYN-large-flashlight-switch-off.mp3-1ea9f9e5584e102dd3aa3289351fc90c.mp3str"
+
+[deps]
+
+source_file="res://Audios/2PKSRYN-large-flashlight-switch-off.mp3"
+dest_files=[ "res://.import/2PKSRYN-large-flashlight-switch-off.mp3-1ea9f9e5584e102dd3aa3289351fc90c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

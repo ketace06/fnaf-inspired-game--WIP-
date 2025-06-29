@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/VENT CRAWL - AUDIO FROM JAYUZUMI.COM.mp3-f1e68033132dd0e5a4bcdc0ba27484d3.mp3str"
+
+[deps]
+
+source_file="res://Audios/VENT CRAWL - AUDIO FROM JAYUZUMI.COM.mp3"
+dest_files=[ "res://.import/VENT CRAWL - AUDIO FROM JAYUZUMI.COM.mp3-f1e68033132dd0e5a4bcdc0ba27484d3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

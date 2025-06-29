@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/clock-ticking-natural-room-verb-17249.mp3-f969a0ea2c82af5efad8b3d26072e5e2.mp3str"
+
+[deps]
+
+source_file="res://Audios/clock-ticking-natural-room-verb-17249.mp3"
+dest_files=[ "res://.import/clock-ticking-natural-room-verb-17249.mp3-f969a0ea2c82af5efad8b3d26072e5e2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

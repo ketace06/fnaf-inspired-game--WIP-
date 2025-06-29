@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Scary_Space_B.mp3-ef2c211155f16555e71771a7e3cdd484.mp3str"
+
+[deps]
+
+source_file="res://Audios/Scary_Space_B.mp3"
+dest_files=[ "res://.import/Scary_Space_B.mp3-ef2c211155f16555e71771a7e3cdd484.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

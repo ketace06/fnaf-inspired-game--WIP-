@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hum-7-57799.mp3-8cc64ebbbc408a03206dbc2a4cd70d38.mp3str"
+
+[deps]
+
+source_file="res://Audios/hum-7-57799.mp3"
+dest_files=[ "res://.import/hum-7-57799.mp3-8cc64ebbbc408a03206dbc2a4cd70d38.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

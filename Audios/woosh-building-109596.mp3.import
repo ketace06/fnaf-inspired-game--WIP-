@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/woosh-building-109596.mp3-1934326524b52f85f6f7816019954e60.mp3str"
+
+[deps]
+
+source_file="res://Audios/woosh-building-109596.mp3"
+dest_files=[ "res://.import/woosh-building-109596.mp3-1934326524b52f85f6f7816019954e60.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=30]
+extents = Vector3( 0.566949, 1, 0.472796 )
+
+[sub_resource type="BoxShape" id=37]
+extents = Vector3( 0.001, 1, 0.001 )
+
+[node name="Bonnie" type="KinematicBody"]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 3
+
+[node name="Bonnie" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.09748 )
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="Bonnie"]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.207, -0.929 )
+fov = 65.0
+
+[node name="SpotLight" type="SpotLight" parent="Bonnie/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0156023, 0.0160129, -0.115992 )
+visible = false
+shadow_enabled = true
+spot_range = 0.945524
+spot_attenuation = 0.615572
+spot_angle_attenuation = 0.535887
+
+[node name="Area" type="Area" parent="Bonnie"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Bonnie/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0539052, 0, 0.305565 )
+shape = SubResource( 30 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666667, -0.666667 )
+shape = SubResource( 37 )
+
+[connection signal="body_entered" from="Bonnie/Area" to="Bonnie" method="_on_Area_body_entered"]

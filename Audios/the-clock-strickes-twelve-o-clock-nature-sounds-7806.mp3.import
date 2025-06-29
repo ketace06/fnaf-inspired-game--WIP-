@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/the-clock-strickes-twelve-o-clock-nature-sounds-7806.mp3-3f79fcf8e02d25e7fbbebac995cc6488.mp3str"
+
+[deps]
+
+source_file="res://Audios/the-clock-strickes-twelve-o-clock-nature-sounds-7806.mp3"
+dest_files=[ "res://.import/the-clock-strickes-twelve-o-clock-nature-sounds-7806.mp3-3f79fcf8e02d25e7fbbebac995cc6488.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Windowscare.mp3-5299f55027941eef7066e0cb7df3e32b.mp3str"
+
+[deps]
+
+source_file="res://Audios/Windowscare.mp3"
+dest_files=[ "res://.import/Windowscare.mp3-5299f55027941eef7066e0cb7df3e32b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

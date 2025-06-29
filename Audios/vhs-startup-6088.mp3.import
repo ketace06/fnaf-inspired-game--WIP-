@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vhs-startup-6088.mp3-fe927dedc58fc322a7e97bf69b8763fb.mp3str"
+
+[deps]
+
+source_file="res://Audios/vhs-startup-6088.mp3"
+dest_files=[ "res://.import/vhs-startup-6088.mp3-fe927dedc58fc322a7e97bf69b8763fb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

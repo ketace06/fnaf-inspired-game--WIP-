@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.gltf" type="PackedScene" id=1]
+
+[node name="scene" instance=ExtResource( 1 )]
+
+[node name="Transform_Bn" parent="Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie" index="1"]
+transform = Transform( 1.77, 0, 0, 0, 1.77, 0, 0, 0, 1.77, 0, 0, 0 )
+
+[node name="Object_90" parent="Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie/Transform_Bn/Object_8/Skeleton" index="2"]
+visible = false
+
+[node name="Object_91" parent="Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie/Transform_Bn/Object_8/Skeleton" index="3"]
+visible = false
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Jack_O_Bonnie--Glimpse (1)"

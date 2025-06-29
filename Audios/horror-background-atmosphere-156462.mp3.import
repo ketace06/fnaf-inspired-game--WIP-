@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/horror-background-atmosphere-156462.mp3-0e396e24c650a39fb4c1c77bdffb411f.mp3str"
+
+[deps]
+
+source_file="res://Audios/horror-background-atmosphere-156462.mp3"
+dest_files=[ "res://.import/horror-background-atmosphere-156462.mp3-0e396e24c650a39fb4c1c77bdffb411f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

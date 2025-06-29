@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/laughing-ghost-horror-sounds-8293.mp3-7c64a6b9a25a8a736abb96ad6da0c7ff.mp3str"
+
+[deps]
+
+source_file="res://Audios/laughing-ghost-horror-sounds-8293.mp3"
+dest_files=[ "res://.import/laughing-ghost-horror-sounds-8293.mp3-7c64a6b9a25a8a736abb96ad6da0c7ff.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

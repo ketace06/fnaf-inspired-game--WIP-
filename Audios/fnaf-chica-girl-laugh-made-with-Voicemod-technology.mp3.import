@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fnaf-chica-girl-laugh-made-with-Voicemod-technology.mp3-2db0754642a4c8493d9a2524f6a55bb9.mp3str"
+
+[deps]
+
+source_file="res://Audios/fnaf-chica-girl-laugh-made-with-Voicemod-technology.mp3"
+dest_files=[ "res://.import/fnaf-chica-girl-laugh-made-with-Voicemod-technology.mp3-2db0754642a4c8493d9a2524f6a55bb9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

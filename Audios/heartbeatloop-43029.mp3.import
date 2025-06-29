@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/heartbeatloop-43029.mp3-ea8f0d37bafb7130d6aba7926bcb4cff.mp3str"
+
+[deps]
+
+source_file="res://Audios/heartbeatloop-43029.mp3"
+dest_files=[ "res://.import/heartbeatloop-43029.mp3-ea8f0d37bafb7130d6aba7926bcb4cff.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

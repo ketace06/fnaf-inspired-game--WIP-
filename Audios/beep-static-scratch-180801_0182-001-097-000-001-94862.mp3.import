@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/beep-static-scratch-180801_0182-001-097-000-001-94862.mp3-d89e5db18b90eab805752cce16c499a5.mp3str"
+
+[deps]
+
+source_file="res://Audios/beep-static-scratch-180801_0182-001-097-000-001-94862.mp3"
+dest_files=[ "res://.import/beep-static-scratch-180801_0182-001-097-000-001-94862.mp3-d89e5db18b90eab805752cce16c499a5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
