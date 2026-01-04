@@ -1,9 +1,11 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Codes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Maps/fnaf_2_hw_map/scene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Audios/project-fredbear-bonnie-running-x4-loop-made-with-Voicemod.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Shaders/Screen Shaders/LensDistortion.shader" type="Shader" id=4]
-[ext_resource path="res://Shaders/Screen Shaders/NTSC.shader" type="Shader" id=5]
+[ext_resource path="res://Shaders/Screen Shaders/VHS.shader" type="Shader" id=5]
+[ext_resource path="res://Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Shaders/Screen Shaders/Aditional Shaders/Sharpness.shader" type="Shader" id=7]
 [ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Audios/jumpscare-2-206591.mp3" type="AudioStream" id=9]
@@ -12,7 +14,10 @@
 [ext_resource path="res://Audios/the-clock-strickes-twelve-o-clock-nature-sounds-7806.mp3" type="AudioStream" id=12]
 [ext_resource path="res://Audios/vhs-startup-6088.mp3" type="AudioStream" id=13]
 [ext_resource path="res://Audios/Windowscare.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Shaders/Screen Shaders/VHSPause.shader" type="Shader" id=15]
 [ext_resource path="res://Audios/heartbeatloop-43029.mp3" type="AudioStream" id=16]
+[ext_resource path="res://PauseScene/pause_menu.gd" type="Script" id=17]
+[ext_resource path="res://PauseScene/logout.png" type="Texture" id=18]
 
 [sub_resource type="ShaderMaterial" id=31]
 shader = ExtResource( 4 )
@@ -24,9 +29,10 @@ shader_param/sharpen_amount = 1.0
 
 [sub_resource type="ShaderMaterial" id=33]
 shader = ExtResource( 5 )
-shader_param/blur_amount = 3.0
-shader_param/signal_quality = 0.0
-shader_param/bottom_strenth = 3.0
+shader_param/tape_wave_amount = 0.003
+shader_param/tape_crease_amount = 2.5
+shader_param/color_displacement = 1.0
+shader_param/lines_velocity = 0.1
 
 [sub_resource type="Animation" id=36]
 resource_name = "Jack_O_Bonnie--CPU_Lurch"
@@ -7807,6 +7813,32 @@ tracks/0/keys = {
 [sub_resource type="BoxShape" id=53]
 extents = Vector3( 2, 2, 3 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 75
+font_data = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 15 )
+shader_param/shake_amount_x = 250.0
+shader_param/shake_amount_y = 40.0
+shader_param/white_hlines = 50.0
+shader_param/white_vlines = 80.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 6 )
+
+[sub_resource type="Shader" id=55]
+code = "shader_type canvas_item;
+
+void fragment() {
+    vec4 color = texture(TEXTURE, UV);
+    COLOR = vec4(1.0 - color.rgb, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=56]
+shader = SubResource( 55 )
+
 [sub_resource type="Environment" id=4]
 background_mode = 1
 tonemap_mode = 2
@@ -7848,6 +7880,13 @@ bus = "SFX"
 [node name="AudioStreamPlayer3D" parent="Player/Head/HeadXRotation/Flashlight" index="1"]
 autoplay = true
 
+[node name="RayCast" type="RayCast" parent="Player/Head" index="1"]
+transform = Transform( -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0, 1, -1.19209e-07, 0.823301, 0 )
+enabled = true
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="UI" type="Node" parent="Player"]
 
 [node name="Effects" type="Control" parent="Player/UI"]
@@ -7882,26 +7921,12 @@ margin_top = -100.0
 margin_right = -100.0
 margin_bottom = -100.0
 
-[node name="BackBufferCopy5" type="BackBufferCopy" parent="Player/UI/Effects"]
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Player/UI/Effects"]
 position = Vector2( 960, 540 )
 scale = Vector2( 9.6, 5.4 )
 copy_mode = 2
 
-[node name="GrainIntense" type="ColorRect" parent="Player/UI/Effects/BackBufferCopy5"]
-material = SubResource( 33 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -100.0
-margin_top = -100.0
-margin_right = -100.0
-margin_bottom = -100.0
-
-[node name="BackBufferCopy6" type="BackBufferCopy" parent="Player/UI/Effects"]
-position = Vector2( 960, 540 )
-scale = Vector2( 9.6, 5.4 )
-copy_mode = 2
-
-[node name="NTSC" type="ColorRect" parent="Player/UI/Effects/BackBufferCopy6"]
+[node name="VHS" type="ColorRect" parent="Player/UI/Effects/BackBufferCopy3"]
 material = SubResource( 33 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -7960,15 +7985,24 @@ transform = Transform( 15.84, 0, 0, 0, 16.632, 0, 0, 0, 12.936, 0, 0, 0 )
 transform = Transform( 0.113636, 0, 0, 0, 0.0601251, 0, 0, 0, 0.139147, 0, 0.0601251, -0.309214 )
 shape = SubResource( 53 )
 
-[node name="Seen!" type="AudioStreamPlayer" parent="Bonnie"]
+[node name="Seen" type="AudioStreamPlayer" parent="Bonnie"]
 stream = ExtResource( 14 )
 volume_db = -15.0
 mix_target = 1
 bus = "SFX"
 
-[node name="Jumpscared!" type="AudioStreamPlayer" parent="Bonnie"]
+[node name="Steps" type="AudioStreamPlayer3D" parent="Bonnie"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+stream = ExtResource( 3 )
+unit_size = 5.0
+pitch_scale = 1.27
+max_distance = 20.0
+bus = "SFX"
+
+[node name="Jumpscare" type="AudioStreamPlayer" parent="Bonnie"]
 stream = ExtResource( 9 )
 volume_db = -10.0
+pitch_scale = 0.8
 mix_target = 1
 bus = "SFX"
 
@@ -7996,6 +8030,136 @@ autoplay = true
 mix_target = 1
 bus = "SFX"
 
+[node name="pause_menu" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 17 )
+
+[node name="UI" type="Control" parent="pause_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Content" type="Control" parent="pause_menu/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Text" type="Label" parent="pause_menu/UI/Content"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1078.0
+margin_top = -510.0
+margin_right = 1078.0
+margin_bottom = 510.0
+custom_fonts/font = SubResource( 6 )
+text = "help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me help me "
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="pause_menu/UI/Content"]
+position = Vector2( 960, 540 )
+scale = Vector2( 9.6, 5.4 )
+copy_mode = 2
+
+[node name="VHSPAUSED" type="ColorRect" parent="pause_menu/UI/Content/BackBufferCopy"]
+material = SubResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -188.0
+margin_top = -179.0
+margin_right = -12.0
+margin_bottom = -21.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Text2" type="Label" parent="pause_menu/UI/Content"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -323.0
+margin_top = -60.0
+margin_right = 323.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "game paused"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Layout" type="Control" parent="pause_menu/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="pause_menu/UI/Layout"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 112.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="pause_menu/UI/Layout"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -960.0
+margin_top = -112.0
+margin_right = 960.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="pause_menu/UI/Layout"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -540.0
+margin_right = 117.0
+margin_bottom = 540.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="pause_menu/UI/Layout"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -117.0
+margin_top = -540.0
+margin_bottom = 540.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ExitButton" type="Button" parent="pause_menu/UI"]
+pause_mode = 2
+material = SubResource( 56 )
+anchor_left = 0.1
+anchor_top = 0.15
+anchor_right = 0.1
+anchor_bottom = 0.15
+margin_right = 102.0
+margin_bottom = 110.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
+icon = ExtResource( 18 )
+flat = true
+expand_icon = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
 
@@ -8004,6 +8168,7 @@ environment = SubResource( 4 )
 [connection signal="body_entered" from="Bonnie/SeeArea" to="Bonnie" method="_on_SeeArea_body_entered"]
 [connection signal="body_exited" from="Bonnie/SeeArea" to="Player" method="_on_SeeArea_body_exited"]
 [connection signal="body_exited" from="Bonnie/SeeArea" to="Bonnie" method="_on_SeeArea_body_exited"]
+[connection signal="pressed" from="pause_menu/UI/ExitButton" to="pause_menu" method="_on_ExitButton_pressed"]
 
 [editable path="Player"]
 [editable path="Bonnie"]

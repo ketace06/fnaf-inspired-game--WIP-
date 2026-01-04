@@ -5,6 +5,8 @@ onready var head_x = $Head/HeadXRotation
 onready var camera = $Head/HeadXRotation/Camera
 onready var flashlight_light = $Head/HeadXRotation/Flashlight/Spotlight
 onready var collider = $CollisionShape
+onready var audioFlashlight = $Head/HeadXRotation/Flashlight/AudioStreamPlayer3D
+onready var rayCastCrouch = $Head/RayCast
 
 export var cam_rotation_amount : float = 0.2
 
@@ -27,7 +29,7 @@ var gravity_vec = Vector3()
 
 var cam_shaking = false
 var shake_time = 0.0
-var shake_amplitude = 0.5
+var shake_amplitude = 0.25
 var shake_speed = 20.0
 
 var crouch_interp = 0.0
@@ -41,20 +43,19 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		head_x.rotation_degrees.x = clamp(head_x.rotation_degrees.x - SENSITIVITY * event.relative.y, -89, 89)
+		head_x.rotation_degrees.x = clamp(head_x.rotation_degrees.x - SENSITIVITY * event.relative.y, -49, 49)
 		rotation_degrees.y -= SENSITIVITY * event.relative.x
 	elif event is InputEventKey and event.scancode == KEY_F and event.pressed:
 		flashlight_light.visible = !flashlight_light.visible
-		$Head/HeadXRotation/Flashlight/AudioStreamPlayer3D.play()
+		audioFlashlight.play()
 
 func _physics_process(delta):
 	if is_dead:
-		# reset crouch smoothly and ignore input
 		crouch_interp = lerp(crouch_interp, 0.0, 10 * delta)
 	else:
 		var crouching = Input.is_action_pressed("crouch")
 		var target = 0.0
-		if crouching:
+		if crouching || rayCastCrouch.is_colliding():
 			target = 1.0
 		crouch_interp = lerp(crouch_interp, target, 10 * delta)
 	var shape = collider.shape

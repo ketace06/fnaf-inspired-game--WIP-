@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/project-fredbear-bonnie-running-x4-loop-made-with-Voicemod.mp3-6b8958b0a4340fa1f572881ffd0d6985.mp3str"
+
+[deps]
+
+source_file="res://Audios/project-fredbear-bonnie-running-x4-loop-made-with-Voicemod.mp3"
+dest_files=[ "res://.import/project-fredbear-bonnie-running-x4-loop-made-with-Voicemod.mp3-6b8958b0a4340fa1f572881ffd0d6985.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
