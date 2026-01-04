@@ -1,25 +1,18 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Codes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Maps/Map3 - Mannequins/checkerboard.png" type="Texture" id=2]
-[ext_resource path="res://Shaders/Other/Images/grain.jpg" type="Texture" id=3]
+[ext_resource path="res://Maps/fnaf_2_hw_map/scene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Shaders/Screen Shaders/LensDistortion.shader" type="Shader" id=4]
 [ext_resource path="res://Shaders/Screen Shaders/NTSC.shader" type="Shader" id=5]
-[ext_resource path="res://Shaders/Screen Shaders/SimpleGrain.shader" type="Shader" id=6]
 [ext_resource path="res://Shaders/Screen Shaders/Aditional Shaders/Sharpness.shader" type="Shader" id=7]
 [ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Animatronics/BONNIENIGHTMARE/scene.gd" type="Script" id=9]
+[ext_resource path="res://Audios/jumpscare-2-206591.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Audios/hum-7-57799.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Audios/Scary_Space_B.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Audios/the-clock-strickes-twelve-o-clock-nature-sounds-7806.mp3" type="AudioStream" id=12]
 [ext_resource path="res://Audios/vhs-startup-6088.mp3" type="AudioStream" id=13]
 [ext_resource path="res://Audios/Windowscare.mp3" type="AudioStream" id=14]
-[ext_resource path="res://Audios/jumpscare-1-258269.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Audios/heartbeatloop-43029.mp3" type="AudioStream" id=16]
-
-[sub_resource type="SpatialMaterial" id=35]
-albedo_texture = ExtResource( 2 )
-uv1_scale = Vector3( 35, 35, 1 )
 
 [sub_resource type="ShaderMaterial" id=31]
 shader = ExtResource( 4 )
@@ -30,18 +23,10 @@ shader = ExtResource( 7 )
 shader_param/sharpen_amount = 1.0
 
 [sub_resource type="ShaderMaterial" id=33]
-shader = ExtResource( 6 )
-shader_param/amount = 0.06
-
-[sub_resource type="ShaderMaterial" id=34]
 shader = ExtResource( 5 )
 shader_param/blur_amount = 3.0
 shader_param/signal_quality = 0.0
 shader_param/bottom_strenth = 3.0
-shader_param/grain_tex = ExtResource( 3 )
-
-[sub_resource type="BoxShape" id=55]
-extents = Vector3( 0.559545, 0.389551, 1.39249 )
 
 [sub_resource type="Animation" id=36]
 resource_name = "Jack_O_Bonnie--CPU_Lurch"
@@ -7844,19 +7829,10 @@ glow_blend_mode = 1
 glow_hdr_threshold = 0.27
 glow_hdr_scale = 1.6
 
-[node name="Map3" type="Spatial"]
-
-[node name="CSGCombiner" type="CSGCombiner" parent="."]
-use_collision = true
-
-[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 45.0
-depth = 45.0
-material = SubResource( 35 )
+[node name="World" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.864028, 4.79715 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.349184, 0.864028, 6.31967 )
 
 [node name="Camera" parent="Player/Head/HeadXRotation" index="0"]
 current = true
@@ -7920,13 +7896,13 @@ margin_top = -100.0
 margin_right = -100.0
 margin_bottom = -100.0
 
-[node name="BackBufferCopy3" type="BackBufferCopy" parent="Player/UI/Effects"]
+[node name="BackBufferCopy6" type="BackBufferCopy" parent="Player/UI/Effects"]
 position = Vector2( 960, 540 )
 scale = Vector2( 9.6, 5.4 )
 copy_mode = 2
 
-[node name="NTSC" type="ColorRect" parent="Player/UI/Effects/BackBufferCopy3"]
-material = SubResource( 34 )
+[node name="NTSC" type="ColorRect" parent="Player/UI/Effects/BackBufferCopy6"]
+material = SubResource( 33 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -100.0
@@ -7941,29 +7917,22 @@ pitch_scale = 1.8
 mix_target = 1
 bus = "SFX"
 
-[node name="scene" parent="." instance=ExtResource( 8 )]
-script = ExtResource( 9 )
+[node name="Bonnie" parent="." instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, -6.5105 )
 
-[node name="Sketchfab_model" parent="scene" index="0"]
+[node name="Sketchfab_model" parent="Bonnie" index="1"]
 transform = Transform( -1.13602, 1.71535e-07, 7.49803e-15, 0, -4.96572e-08, 1.13602, 1.71535e-07, 1.13602, 4.96572e-08, 0, 0, 0 )
 
-[node name="Jack_O_Bonniefbx" parent="scene/Sketchfab_model" index="0"]
+[node name="Jack_O_Bonniefbx" parent="Bonnie/Sketchfab_model" index="0"]
 transform = Transform( 1, -6.56334e-22, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
-[node name="Transform_Bn" parent="scene/Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie" index="1"]
-transform = Transform( 1, 0, 0, 0, -0.0168555, 0.999858, 0, -0.999858, -0.0168555, 0, -0.0197373, -2 )
+[node name="Transform_Bn" parent="Bonnie/Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0197373, -2 )
 
-[node name="Object_11" parent="scene/Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie/Transform_Bn/Object_8/Skeleton" index="1"]
+[node name="Object_11" parent="Bonnie/Sketchfab_model/Jack_O_Bonniefbx/Object_2/RootNode/JackOBonniePrefab/Jack_O_Bonnie/Transform_Bn/Object_8/Skeleton" index="1"]
 transform = Transform( 1, -8.47033e-22, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
-[node name="JumpscareArea" type="Area" parent="scene/Sketchfab_model" index="1"]
-transform = Transform( 1, 0, -8.47033e-22, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="scene/Sketchfab_model/JumpscareArea"]
-transform = Transform( 1, 0, -5.0822e-21, 0, 1, 0, 0, 0, 1, 0, -1.58759e-08, 1.24346 )
-shape = SubResource( 55 )
-
-[node name="AnimationPlayer" parent="scene" index="1"]
+[node name="AnimationPlayer" parent="Bonnie" index="3"]
 autoplay = "Jack_O_Bonnie--Charge"
 anims/Jack_O_Bonnie--CPU_Lurch = SubResource( 36 )
 anims/Jack_O_Bonnie--CPU_Revive = SubResource( 37 )
@@ -7984,24 +7953,27 @@ anims/Jack_O_Bonnie--Shutdown = SubResource( 51 )
 anims/Jack_O_Bonnie--ShutdownFinalPose = SubResource( 52 )
 anims/RESET = SubResource( 54 )
 
-[node name="SeeArea" type="Area" parent="scene"]
+[node name="SeeArea" type="Area" parent="Bonnie"]
 transform = Transform( 15.84, 0, 0, 0, 16.632, 0, 0, 0, 12.936, 0, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="scene/SeeArea"]
+[node name="CollisionShape" type="CollisionShape" parent="Bonnie/SeeArea"]
 transform = Transform( 0.113636, 0, 0, 0, 0.0601251, 0, 0, 0, 0.139147, 0, 0.0601251, -0.309214 )
 shape = SubResource( 53 )
 
-[node name="Seen!" type="AudioStreamPlayer" parent="scene"]
+[node name="Seen!" type="AudioStreamPlayer" parent="Bonnie"]
 stream = ExtResource( 14 )
 volume_db = -15.0
 mix_target = 1
 bus = "SFX"
 
-[node name="Jumpscared!" type="AudioStreamPlayer" parent="scene"]
-stream = ExtResource( 15 )
-volume_db = -20.0
+[node name="Jumpscared!" type="AudioStreamPlayer" parent="Bonnie"]
+stream = ExtResource( 9 )
+volume_db = -10.0
 mix_target = 1
 bus = "SFX"
+
+[node name="Map" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="WorldSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -8027,11 +7999,12 @@ bus = "SFX"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
 
-[connection signal="body_entered" from="scene/Sketchfab_model/JumpscareArea" to="Player" method="_on_JumpscareArea_body_entered"]
-[connection signal="body_entered" from="scene/Sketchfab_model/JumpscareArea" to="scene" method="_on_JumpscareArea_body_entered"]
-[connection signal="body_entered" from="scene/SeeArea" to="Player" method="_on_SeeArea_body_entered"]
-[connection signal="body_entered" from="scene/SeeArea" to="scene" method="_on_Area_body_entered"]
-[connection signal="body_exited" from="scene/SeeArea" to="scene" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="Bonnie/JumpscareArea" to="Player" method="_on_JumpscareArea_body_entered"]
+[connection signal="body_entered" from="Bonnie/SeeArea" to="Player" method="_on_SeeArea_body_entered"]
+[connection signal="body_entered" from="Bonnie/SeeArea" to="Bonnie" method="_on_SeeArea_body_entered"]
+[connection signal="body_exited" from="Bonnie/SeeArea" to="Player" method="_on_SeeArea_body_exited"]
+[connection signal="body_exited" from="Bonnie/SeeArea" to="Bonnie" method="_on_SeeArea_body_exited"]
 
 [editable path="Player"]
-[editable path="scene"]
+[editable path="Bonnie"]
+[editable path="Map"]

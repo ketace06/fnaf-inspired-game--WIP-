@@ -112,6 +112,7 @@ func _on_JumpscareArea_body_entered(body):
 		set_process_input(false)
 		cam_shaking = false
 		$Heartbeat.stop()
+		flashlight_light.visible = true
 		camera.rotation_degrees = Vector3.ZERO
 		head_x.rotation_degrees = Vector3.ZERO
 		head.rotation_degrees = Vector3.ZERO
