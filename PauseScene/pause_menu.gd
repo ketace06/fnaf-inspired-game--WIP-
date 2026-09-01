@@ -18,6 +18,7 @@ func _process(delta):
 		if text.visible_characters < text.get_total_character_count():
 			text.visible_characters += int(char_speed * delta)
 
+
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		get_tree().paused = !get_tree().paused
